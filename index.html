@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-	<title></title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="css/style.css" rel="stylesheet">
-	<script src="path/to/jquery.min.js" defer></script>
-	<script src="path/to/arbor.js" defer></script>
-	<script src="path/to/arbor-tween.js" defer></script>
-</head>
-
-<body>
-</body>
-	<div></div>
+    <script src="path/to/jquery.min.js" defer></script>
+    <script src="path/to/arbor.js" defer></script>
+    <script src="path/to/arbor-tween.js" defer></script>
+  </head>
+  <body>
+    <div>
+      <h1>Verificador de Palabras</h1>
+      <label for="palabra">Ingrese una palabra:</label>
+      <input type="text" id="palabra" name="palabra" />
+      <button onclick="verificarPalabra()">Verificar</button>
+    </div>
+	<div>
+		<h1>Resultado</h1>
+		<p id="resultado"></p>
+	</div>
+    <script src="automata.js"></script>
+  </body>
 </html>
