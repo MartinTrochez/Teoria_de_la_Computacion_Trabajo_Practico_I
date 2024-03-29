@@ -1,3 +1,5 @@
+const PromptSync = require("prompt-sync");
+
 // Estados
 let q0 = "q0";
 let q1 = "q1";
@@ -19,17 +21,17 @@ let estadoInicial = q0;
 // Estado de Aceptacion
 let estadoAceptacion = q2;
 
+let estadoActual = null;
+
 const prompt = require("prompt-sync")();
 const palabraUsuario = prompt("Ingrese una palabra: ");
 
-chequearPalabraIngresada(palabraUsuario);
 
 function chequearPalabraIngresada(palabra) {
     let palabraValida = true;
     for (let index = 0; index < palabra.length; index++) {
         const element = palabra[index];
-        console.log(element)
-        if (!alfabeto.includes(element)) { 
+        if (!alfabeto.includes(element)) {
             palabraValida = false;
             break;
         }
@@ -40,4 +42,32 @@ function chequearPalabraIngresada(palabra) {
     } else {
         console.log("Palabra no válida.");
     }
+    return palabraValida
 }
+
+
+function cambiarEstado(palabra) {
+    if (estadoActual == null) {
+        estadoActual = estadoInicial;
+    }
+    for (let index = 0; index < palabra.length; index++) {
+        const element = palabra[index];
+        let estadoAnterior = estadoActual;
+        console.log(funcionTransicion[estadoAnterior])
+        let temp = funcionTransicion[estadoAnterior]
+        console.log(temp[element])
+        estadoActual = temp[element]
+    }
+
+}
+
+if (chequearPalabraIngresada(palabraUsuario)) {
+    cambiarEstado(palabraUsuario) 
+    if (estadoActual == estadoAceptacion) {
+        console.log("Palabra Aceptada")
+    } else {
+        console.log("Palabra No Aceptada")
+    }
+
+}
+
