@@ -1,4 +1,3 @@
-
 // Estados
 let q0 = "q0";
 let q1 = "q1";
@@ -20,9 +19,7 @@ let estadoInicial = q0;
 // Estado de Aceptacion
 let estadoAceptacion = q2;
 
-chequearPalabraIngresada(palabraUsuario);
-
-
+let estadoActual = null;
 
 function verificarPalabra() {
   let palabraUsuario = document.getElementById("palabra").value;
@@ -30,51 +27,45 @@ function verificarPalabra() {
 }
 
 function chequearPalabraIngresada(palabra) {
-    let palabraValida = true;
-    for (let index = 0; index < palabra.length; index++) {
-      const element = palabra[index];
-      console.log(element);
-      if (!alfabeto.includes(element)) {
-        palabraValida = false;
-        break;
-      }
+  let palabraValida = true;
+  for (let index = 0; index < palabra.length; index++) {
+    const element = palabra[index];
+    console.log(element);
+    if (!alfabeto.includes(element)) {
+      palabraValida = false;
+      break;
     }
-  
-    mostrarResultado(palabraValida);
   }
+
+  mostrarResultado(palabraValida);
+}
 
 function mostrarResultado(resultado) {
-  let resultadoElemento = document.getElementById("resultado");
-  if (resultado) {
-    resultadoElemento.textContent = "palabra valida";
+  if (resultado == false) {
+    alert("Ingrese de nuevo la Palabra");
+    document.getElementById("palabra").value = "";
   } else {
-    resultadoElemento.textContent = "palabra invalida";
+    palabraUsuario = document.getElementById("palabra").value;
+    resultadoElemento = document.getElementById('resultado')
+    cambiarEstado(palabraUsuario);
+    if (estadoActual == estadoAceptacion) {
+      resultadoElemento.innerHTML = "Palabra aceptada";
+    } else {
+      resultadoElemento.innerHTML = "Palabra NO aceptada";
+    }
   }
 }
 
-
 function cambiarEstado(palabra) {
-    if (estadoActual == null) {
-        estadoActual = estadoInicial;
-    }
-    for (let index = 0; index < palabra.length; index++) {
-        const element = palabra[index];
-        let estadoAnterior = estadoActual;
-        console.log(funcionTransicion[estadoAnterior])
-        let temp = funcionTransicion[estadoAnterior]
-        console.log(temp[element])
-        estadoActual = temp[element]
-    }
-
+  if (estadoActual == null) {
+    estadoActual = estadoInicial;
+  }
+  for (let index = 0; index < palabra.length; index++) {
+    const element = palabra[index];
+    let estadoAnterior = estadoActual;
+    console.log(funcionTransicion[estadoAnterior]);
+    let temp = funcionTransicion[estadoAnterior];
+    console.log(temp[element]);
+    estadoActual = temp[element];
+  }
 }
-
-if (chequearPalabraIngresada(palabraUsuario)) {
-    cambiarEstado(palabraUsuario) 
-    if (estadoActual == estadoAceptacion) {
-        console.log("Palabra Aceptada")
-    } else {
-        console.log("Palabra No Aceptada")
-    }
-
-}
-
