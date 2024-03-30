@@ -36,36 +36,33 @@ function chequearPalabraIngresada(palabra) {
       break;
     }
   }
-
   mostrarResultado(palabraValida);
 }
 
 function mostrarResultado(resultado) {
+  palabraUsuario = document.getElementById("palabra").value;
+  resultadoElemento = document.getElementById("resultado");
   if (resultado == false) {
     alert("Ingrese de nuevo la Palabra");
     document.getElementById("palabra").value = "";
+    resultadoElemento.innerHTML = "";
   } else {
-    palabraUsuario = document.getElementById("palabra").value;
-    resultadoElemento = document.getElementById('resultado')
     cambiarEstado(palabraUsuario);
     if (estadoActual == estadoAceptacion) {
-      resultadoElemento.innerHTML = "Palabra aceptada";
+      resultadoElemento.innerHTML = "Palabra Aceptada";
     } else {
-      resultadoElemento.innerHTML = "Palabra NO aceptada";
+      resultadoElemento.innerHTML = "Palabra NO Aceptada";
     }
   }
 }
 
 function cambiarEstado(palabra) {
-  if (estadoActual == null) {
-    estadoActual = estadoInicial;
-  }
+  estadoActual = estadoInicial;
+
   for (let index = 0; index < palabra.length; index++) {
     const element = palabra[index];
     let estadoAnterior = estadoActual;
-    console.log(funcionTransicion[estadoAnterior]);
     let temp = funcionTransicion[estadoAnterior];
-    console.log(temp[element]);
     estadoActual = temp[element];
   }
 }
