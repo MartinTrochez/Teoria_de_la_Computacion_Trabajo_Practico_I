@@ -38,9 +38,9 @@ Un automata finito no determinante o AFND, de la siguiente manera:
 
 ## Automata Finito No Determinante Generalizado
 Un automata finito no determinante generalizado, o AFNDG, de la siguiente manera:
-> Una AFNDG es una quintupla $(Q, \Sigma, \sigma, q_inicial, q_aceptacion)$, en donde:
+> Una AFNDG es una quintupla $(Q, \Sigma, \sigma, q_{inicial}, q_{aceptacion})$, en donde:
 > - $Q$ es un conjunto finite de estados,
 > - $\Sigma$ es un alfabeto finito,
-> - $\sigma : (Q - {q_inicial}) \times (Q - {q_aceptacion}) \rightarrow R$ es la función de transición en la cual $R$ es la colección de todas las expresiones regulares del alfabeto $\Sigma$,
-> - $q_inicial$ es el estado inicial,
-> - $q_aceptacion \subseteq Q$ es el estado de aceptación.
+> - $\sigma : (Q - q_{inicial}) \times (Q - q_{aceptacion}) \rightarrow R$ es la función de transición en la cual $R$ es la colección de todas las expresiones regulares del alfabeto $\Sigma$,
+> - $q_{inicial}$ es el estado inicial,
+> - $q_{aceptacion} \subseteq Q$ es el estado de aceptación.
