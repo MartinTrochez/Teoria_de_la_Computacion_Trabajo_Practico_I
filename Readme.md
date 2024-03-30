@@ -43,4 +43,4 @@ Un automata finito no determinante generalizado, o AFNDG, de la siguiente manera
 > - $\Sigma$ es un alfabeto finito,
 > - $\sigma : (Q - q_{inicial}) \times (Q - q_{aceptacion}) \rightarrow R$ es la función de transición en la cual $R$ es la colección de todas las expresiones regulares del alfabeto $\Sigma$,
 > - $q_{inicial}$ es el estado inicial,
-> - $q_{aceptacion} \subseteq Q$ es el estado de aceptación.
+> - $q_{aceptacion} es el estado de aceptación.
