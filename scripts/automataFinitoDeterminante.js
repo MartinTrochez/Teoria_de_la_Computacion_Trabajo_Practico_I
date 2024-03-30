@@ -1,3 +1,4 @@
+
 // Estados
 let q0 = "q0";
 let q1 = "q1";
@@ -50,3 +51,30 @@ function mostrarResultado(resultado) {
     resultadoElemento.textContent = "palabra invalida";
   }
 }
+
+
+function cambiarEstado(palabra) {
+    if (estadoActual == null) {
+        estadoActual = estadoInicial;
+    }
+    for (let index = 0; index < palabra.length; index++) {
+        const element = palabra[index];
+        let estadoAnterior = estadoActual;
+        console.log(funcionTransicion[estadoAnterior])
+        let temp = funcionTransicion[estadoAnterior]
+        console.log(temp[element])
+        estadoActual = temp[element]
+    }
+
+}
+
+if (chequearPalabraIngresada(palabraUsuario)) {
+    cambiarEstado(palabraUsuario) 
+    if (estadoActual == estadoAceptacion) {
+        console.log("Palabra Aceptada")
+    } else {
+        console.log("Palabra No Aceptada")
+    }
+
+}
+
