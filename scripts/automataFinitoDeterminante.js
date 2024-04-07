@@ -29,27 +29,27 @@ let estadoActual = null;
 let estadoActualImagen = document.getElementById("estadoActualImagen");
 
 function mostrarImagen() {
-    switch (estadoActual) {
-        case q0:
-            estadoActualImagen.src = "./automatas/determinante_primer/q0.jpg";
-            break;
-        case q1:
-            estadoActualImagen.src = "./automatas/determinante_primer/q1.jpg";
-            break;
-        case q2:
-            estadoActualImagen.src = "./automatas/determinante_primer/q2.jpg";
-            break;
-        case q3:
-            estadoActualImagen.src = "./automatas/determinante_primer/q3.jpg";
-            break;
-        case q4:
-            estadoActualImagen.src = "./automatas/determinante_primer/q4.jpg";
-            break;
-        default:
-            // Manejar cualquier otro caso
-            break;
-    }
-    
+  switch (estadoActual) {
+    case q0:
+      estadoActualImagen.src = "./automatas/determinante_primer/q0.jpg";
+      break;
+    case q1:
+      estadoActualImagen.src = "./automatas/determinante_primer/q1.jpg";
+      break;
+    case q2:
+      estadoActualImagen.src = "./automatas/determinante_primer/q2.jpg";
+      break;
+    case q3:
+      estadoActualImagen.src = "./automatas/determinante_primer/q3.jpg";
+      break;
+    case q4:
+      estadoActualImagen.src = "./automatas/determinante_primer/q4.jpg";
+      break;
+    default:
+      // Manejar cualquier otro caso
+      break;
+  }
+
 }
 
 
@@ -72,7 +72,7 @@ function chequearPalabraIngresada(palabra) {
   mostrarResultado(palabraValida);
 }
 
-function mostrarResultado(resultado) {
+async function mostrarResultado(resultado) {
   palabraUsuario = document.getElementById("palabra").value;
   resultadoPositivo = document.getElementById("resultadoPositivo");
   resultadoNegativo = document.getElementById("resultadoNegativo");
@@ -83,41 +83,35 @@ function mostrarResultado(resultado) {
   } else {
     let palabraAceptada = false;
     cambiarEstado(palabraUsuario);
-    for (let index = 0; index < estadoAceptacion.length; index++) {
-      const element = estadoAceptacion[index];
-      console.log("elemento " + element);
-      console.log(estadoAceptacion);
-      if (estadoActual === element) {
-        palabraAceptada = true;
-        break;
-      }
+    await sleep(palabraUsuario.length * 1000)
+    if (estadoAceptacion.includes(estadoActual)) {
+      palabraAceptada = true;
     }
     if (palabraAceptada) {
-      resultadoNegativo.style.setProperty('display', 'none', 'important') ;
+      resultadoNegativo.style.setProperty('display', 'none', 'important');
       resultadoPositivo.style.display = "block";
       resultadoPositivo.innerHTML = "Palabra Aceptada";
     } else {
-      resultadoPositivo.style.setProperty('display', 'none', 'important') ;
+      resultadoPositivo.style.setProperty('display', 'none', 'important');
       resultadoNegativo.style.display = "block";
       resultadoNegativo.innerHTML = "Palabra No Aceptada";
-    
-      
     }
   }
 }
 
-function cambiarEstado(palabra) {
+async function cambiarEstado(palabra) {
   estadoActual = estadoInicial;
-
+  mostrarImagen();
   for (let index = 0; index < palabra.length; index++) {
     const element = palabra[index];
     let estadoAnterior = estadoActual;
     let temp = funcionTransicion[estadoAnterior];
     estadoActual = temp[element];
-    setTimeout(() => {
-      mostrarImagen();
-    }, 2000);
-  
+    await sleep(1000);
+    mostrarImagen();
   }
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
