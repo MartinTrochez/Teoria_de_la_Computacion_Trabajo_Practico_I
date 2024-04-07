@@ -25,6 +25,35 @@ let estadoAceptacion = [q2, q3];
 
 let estadoActual = null;
 
+
+let estadoActualImagen = document.getElementById("estadoActualImagen");
+
+function mostrarImagen() {
+    switch (estadoActual) {
+        case q0:
+            estadoActualImagen.src = "./automatas/determinante_primer/q0.jpg";
+            break;
+        case q1:
+            estadoActualImagen.src = "./automatas/determinante_primer/q1.jpg";
+            break;
+        case q2:
+            estadoActualImagen.src = "./automatas/determinante_primer/q2.jpg";
+            break;
+        case q3:
+            estadoActualImagen.src = "./automatas/determinante_primer/q3.jpg";
+            break;
+        case q4:
+            estadoActualImagen.src = "./automatas/determinante_primer/q4.jpg";
+            break;
+        default:
+            // Manejar cualquier otro caso
+            break;
+    }
+    
+}
+
+
+
 function verificarPalabra() {
   let palabraUsuario = document.getElementById("palabra").value;
   chequearPalabraIngresada(palabraUsuario);
@@ -67,7 +96,6 @@ function mostrarResultado(resultado) {
       resultadoNegativo.style.setProperty('display', 'none', 'important') ;
       resultadoPositivo.style.display = "block";
       resultadoPositivo.innerHTML = "Palabra Aceptada";
-      
     } else {
       resultadoPositivo.style.setProperty('display', 'none', 'important') ;
       resultadoNegativo.style.display = "block";
@@ -86,5 +114,10 @@ function cambiarEstado(palabra) {
     let estadoAnterior = estadoActual;
     let temp = funcionTransicion[estadoAnterior];
     estadoActual = temp[element];
+    setTimeout(() => {
+      mostrarImagen();
+    }, 2000);
+  
   }
 }
+
