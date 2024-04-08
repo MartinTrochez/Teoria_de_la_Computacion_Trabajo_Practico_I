@@ -44,7 +44,6 @@ function mostrarImagen() {
       estadoActualImagen.src = "./automatas/determinante_segundo/q4.jpg";
       break;
     default:
-      // Manejar cualquier otro caso
       break;
   }
 

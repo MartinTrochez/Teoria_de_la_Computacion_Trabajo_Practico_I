@@ -6,37 +6,18 @@ const alfabeto = "ab";
 
 // Funcion de Transicion
 const funcionTransicion = {
-    [estados[0]]: { [alfabeto[0]]: [estados[1]], },
-    [estados[1]]: { [alfabeto[0]]: [estados[2]], [alfabeto[1]]: [estados[1], estados[2]] },
-    [estados[2]]: { vacio: [] },
+    [estados[0]]: { transicionVacia: [estados[2]], [alfabeto[1]]: [estados[1]] },
+    [estados[1]]: { [alfabeto[0]]: [estados[1], estados[2]], [alfabeto[1]]: [estados[2]] },
+    [estados[2]]: { [alfabeto[0]]: [estados[0]] },
 };
 
-// Estado Inicial
-let estadoInicial = estados[0];
-
-// Estado de Aceptacion
-const estadosAceptacion = [estados[2]];
-
+const estadosAceptacion = ['q0'];
+let estadoInicial = ['q0'];
 let estadoActual = null;
 
 let estadoActualImagen = document.getElementById("estadoActualImagen");
 
 function mostrarImagen() {
-    switch (estadoActual) {
-        case estados[0]:
-            estadoActualImagen.src = "./automatas/no_determinante_primer/q0.jpg";
-            break;
-        case estados[1]:
-            estadoActualImagen.src = "./automatas/no_determinante_primer/q1.jpg";
-            break;
-        case estados[2]:
-            estadoActualImagen.src = "./automatas/no_determinante_primer/q2.jpg";
-            break;
-        default:
-            estadoActualImagen.src = "./automatas/no_determinante_primer/sinPintar.jpg";
-            break;
-    }
-
 }
 
 function verificarPalabra() {
@@ -77,6 +58,7 @@ async function mostrarResultado(resultado) {
             resultadoNegativo.style.display = "block";
             resultadoNegativo.innerHTML = "Palabra No Aceptada";
         }
+        console.log("estado actual " + estadoActual);
     }
 }
 
@@ -84,19 +66,21 @@ async function cambiarEstado(palabra) {
     estadoInicial = ['q0'];
     estadoActual = estadoInicial;
     console.log("Estado inivial " + estadoInicial);
-    console.log("Estado Actual " + estadoActual);
+    if (funcionTransicion[estadoActual].transicionVacia) {
+        estadoActual.push(...funcionTransicion[estadoActual].transicionVacia);
+    }
+    console.log("Estado Inicial " + estadoActual);
     for (const letra of palabra) {
         console.log("letra " + letra);
         const estadoSiguiente = [];
         for (const estado of estadoActual) {
             const transiciones = funcionTransicion[estado];
-            console.log("Transiciones " + transiciones[letra]);
             if (transiciones) {
                 if (transiciones[letra]) {
                     estadoSiguiente.push(...transiciones[letra]);
                 } else {
-                    if (transiciones.vacio) {
-                        estados.push(...transiciones.vacio);
+                    if (transiciones.transicionVacia) {
+                        estadoSiguiente.push(...transiciones.transicionVacia);
                     }
                 }
                 console.log("estadoSiguiente " + estadoSiguiente);
