@@ -8,8 +8,8 @@
 - Lic. Del Rosario, Gabril D.
 
 ## Alumnos:
-- Duarte, Octavio
-- Trochez, Martín
+- [Duarte, Octavio](https://github.com/octiduarte)
+- [Trochez, Martín](https://github.com/MartinTrochez)
 
 ## Carrera:
 Ingeniería en Sistemas de Información - Comision "A"
