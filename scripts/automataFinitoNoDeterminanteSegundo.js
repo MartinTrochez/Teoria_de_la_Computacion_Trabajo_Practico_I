@@ -18,6 +18,29 @@ let estadoActual = null;
 let estadoActualImagen = document.getElementById("estadoActualImagen");
 
 function mostrarImagen() {
+    switch (JSON.stringify(estadoActual)) {
+        case JSON.stringify(['q0']):
+            estadoActualImagen.src = "./automatas/no_determinante_segundo/q0.jpg";
+            break;
+        case JSON.stringify(['q1']):
+            estadoActualImagen.src = "./automatas/no_determinante_segundo/q1.jpg";
+            break;
+        case JSON.stringify(['q2']):
+            estadoActualImagen.src = "./automatas/no_determinante_segundo/q2.jpg";
+            break;
+        case JSON.stringify(['q2', 'q0']):
+            estadoActualImagen.src = "./automatas/no_determinante_segundo/q0-q2.jpg";
+            break;
+        case JSON.stringify(['q1', 'q2']):
+            estadoActualImagen.src = "./automatas/no_determinante_segundo/q1-q2.jpg";
+            break;
+        case JSON.stringify(['q1', 'q2', 'q0']):
+            estadoActualImagen.src = "./automatas/no_determinante_segundo/todos.jpg";
+            break;
+        default:
+            estadoActualImagen.src = "./automatas/no_determinante_segundo/sinPintar.jpg";
+    }
+    
 }
 
 function verificarPalabra() {
