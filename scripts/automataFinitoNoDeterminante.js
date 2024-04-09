@@ -22,21 +22,21 @@ let estadoActual = null;
 let estadoActualImagen = document.getElementById("estadoActualImagen");
 
 function mostrarImagen() {
-    switch (estadoActual) {
-        case estados[0]:
+    console.log("estado actual", estadoActual)
+    switch (JSON.stringify(estadoActual)) {
+        case JSON.stringify(['q0']):
             estadoActualImagen.src = "./automatas/no_determinante_primer/q0.jpg";
             break;
-        case estados[1]:
+        case JSON.stringify(['q1']):
             estadoActualImagen.src = "./automatas/no_determinante_primer/q1.jpg";
             break;
-        case estados[2]:
+        case JSON.stringify(['q2']):
             estadoActualImagen.src = "./automatas/no_determinante_primer/q2.jpg";
             break;
         default:
             estadoActualImagen.src = "./automatas/no_determinante_primer/sinPintar.jpg";
             break;
     }
-
 }
 
 function verificarPalabra() {
