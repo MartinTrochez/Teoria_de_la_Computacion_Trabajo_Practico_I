@@ -31,6 +31,9 @@ function mostrarImagen() {
         case JSON.stringify(['q2', 'q0']):
             estadoActualImagen.src = "./automatas/no_determinante_segundo/q0-q2.jpg";
             break;
+        case JSON.stringify(['q0', 'q2']):
+            estadoActualImagen.src = "./automatas/no_determinante_segundo/q0-q2.jpg";
+            break;
         case JSON.stringify(['q1', 'q2']):
             estadoActualImagen.src = "./automatas/no_determinante_segundo/q1-q2.jpg";
             break;
@@ -92,6 +95,8 @@ async function cambiarEstado(palabra) {
     if (funcionTransicion[estadoActual].transicionVacia) {
         estadoActual.push(...funcionTransicion[estadoActual].transicionVacia);
     }
+    mostrarImagen();
+    await sleep(1000);
     console.log("Estado Inicial " + estadoActual);
     for (const letra of palabra) {
         console.log("letra " + letra);
