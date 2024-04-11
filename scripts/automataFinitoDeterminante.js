@@ -100,12 +100,14 @@ async function mostrarResultado(resultado) {
 }
 
 async function cambiarEstado(palabra) {
-  estadoActual = estadoInicial;
+  estadoActual = estadoInicial; 
   mostrarImagen();
   for (let index = 0; index < palabra.length; index++) {
     const element = palabra[index];
     let estadoAnterior = estadoActual;
+    console.log("estado anterior es:", estadoAnterior)
     let temp = funcionTransicion[estadoAnterior];
+    console.log("temp es: ", temp)
     estadoActual = temp[element];
     await sleep(1000);
     mostrarImagen();
